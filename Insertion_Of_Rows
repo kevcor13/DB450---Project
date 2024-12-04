@@ -1,0 +1,62 @@
+partCollection = [
+    Parts(part_id=101, Part_name='Headlights', part_price=75),
+    Parts(part_id=102, Part_name='Brake Pads', part_price=50),
+    Parts(part_id=103, Part_name='Exhaust Pipe', part_price=100),
+    Parts(part_id=104, Part_name='Bumpers', part_price=90),
+    Parts(part_id=105, Part_name='Battery', part_price=150)
+]
+
+session.add_all(partCollection)
+
+workers = [
+    Employees(Employee_ID='201', f_name='Emily', L_name='Smith', labor_hours=50),
+    Employees(Employee_ID='202', f_name='Jacob', L_name='Johnson', labor_hours=12),
+    Employees(Employee_ID='201', f_name='Ava', L_name='Williams', labor_hours=40),
+    Employees(Employee_ID='201', f_name='Noah', L_name='Brown', labor_hours=35),
+    Employees(Employee_ID='201', f_name='Mason', L_name='Martinez', labor_hours=22)
+]
+
+session.add_all(workers)
+
+customerCollection = [
+    Customer(customer_ID=301, C_f_name='Sophia', C_l_name='Garcia', email='sophia.garcia@example.com', Automobile_type='Sedan'),
+    Customer(customer_ID=302, C_f_name='Liam', C_l_name='Hernandez', email='liam.hernandez@example.com' , Automobile_type='SUV'),
+    Customer(customer_ID=303, C_f_name='Emma', C_l_name='Moore', email='emma.moore@example.com', Automobile_type='Coupe'),
+    Customer(customer_ID=305, C_f_name='James', C_l_name='Anderson', email='james.anderson@example.com' , Automobile_type='Truck'),
+    Customer(customer_ID=306, C_f_name='Olivia', C_l_name='Taylor', email='olivia.taylor@example.com' , Automobile_type='Convertible')
+]
+
+session.add_all(customerCollection)
+
+appointmentCollection = [
+    Appointments(appointment_id =701, customer_id=301, Status='Completed', EmployeeID='201', Date='11/20/24'),
+    Appointments(appointment_id =702, customer_id=302, Status='In Progress', EmployeeID='202', Date='12/03/24'),
+    Appointments(appointment_id =703, customer_id=303, Status='Not Started', EmployeeID='203', Date='12/15/24'),
+    Appointments(appointment_id =703, customer_id=304, Status='Puased', EmployeeID='204', Date='12/11/24'),
+    Appointments(appointment_id =703, customer_id=305, Status='Completed', EmployeeID='205', Date='10/28/24')
+]
+
+session.add_all(appointmentCollection)
+
+partsForApp = [
+    NeededParts(part_id=101, appoinment_id=701),
+    NeededParts(part_id=101, appoinment_id=702),
+    NeededParts(part_id=105, appoinment_id=703),
+    NeededParts(part_id=103, appoinment_id=704),
+    NeededParts(part_id=104, appoinment_id=705),
+    NeededParts(part_id =101, appoinment_id=703)
+]
+
+session.add_all(partsForApp)
+
+invoiceCollection = [
+    Invoice(appioment_id=701, customer_id=301, TotalCost=270),
+    Invoice(appioment_id=702, customer_id=302, TotalCost=100),
+    Invoice(appioment_id=703, customer_id=303, TotalCost=90),
+    Invoice(appioment_id=704, customer_id=304, TotalCost=50),
+    Invoice(appioment_id=705, customer_id=305, TotalCost=150)
+]
+
+session.add_all(invoiceCollection)
+
+session.commit()
