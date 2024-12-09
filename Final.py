@@ -1,5 +1,5 @@
 from sqlalchemy import create_engine, Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.orm import declarative_base
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.orm import relationship
 
@@ -17,7 +17,7 @@ class Parts(Base):
 # Employees table
 class Employees(Base):
     __tablename__ = 'Employees'
-    Employee_ID = Column(String, primary_key=True)
+    Employee_ID = Column(Integer, primary_key=True, autoincrement=True)
     f_name = Column(String, nullable=False)
     L_name = Column(String, nullable=False)
     labor_hours = Column(Integer, nullable=False)
@@ -30,7 +30,7 @@ class Customer(Base):
     C_f_name = Column(String, nullable=False)
     C_l_name = Column(String, nullable=False)
     email = Column(String, nullable=False)
-    Automobile_type = Column(String)
+    Automobile_type = Column(String, nullable=False)
 
 
 # Appointments table
@@ -82,20 +82,8 @@ engine = create_engine('sqlite:///finalchat.db')
 Base.metadata.create_all(engine)
 
 # Create a session
-Session = sessionmaker(bind=engine)
-session = Session()
 
 # Example: Adding a user
 #new_user = User(username='test_user', password='securepassword')
 #session.add(new_user)
 #session.commit()
-
-workers = [
-    Employees(Employee_ID='131', f_name='kadcgfkds', L_name='Vsdchsdcquez', labor_hours=2330),
-    Employees(Employee_ID='121', f_name='Javn', L_name='Vqz', labor_hours=12)
-]
-
-session.add_all(workers)
-session.commit()
-
-print("User added successfully.")
